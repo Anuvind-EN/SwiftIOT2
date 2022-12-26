@@ -30,7 +30,6 @@ T valueOrDefault<T>(T? value, T defaultValue) =>
 
 void _setTimeagoLocales() {
   timeago.setLocaleMessages('en', timeago.EnMessages());
-  timeago.setLocaleMessages('hi', timeago.HiMessages());
 }
 
 String dateTimeFormat(String format, DateTime? dateTime, {String? locale}) {

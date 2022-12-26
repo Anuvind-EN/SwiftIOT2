@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:go_router/go_router.dart';
 import 'package:page_transition/page_transition.dart';
 import '../flutter_flow_theme.dart';
@@ -117,6 +118,18 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               name: 'ChangePassword',
               path: 'changePassword',
               builder: (context, params) => ChangePasswordWidget(),
+            ),
+            FFRoute(
+              name: 'home_PageTemplate',
+              path: 'homePageTemplate',
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'home_PageTemplate')
+                  : HomePageTemplateWidget(),
+            ),
+            FFRoute(
+              name: 'dash',
+              path: 'dash',
+              builder: (context, params) => DashWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -291,10 +304,11 @@ class FFRoute {
           final child = appStateNotifier.loading
               ? Center(
                   child: SizedBox(
-                    width: 50,
-                    height: 50,
-                    child: CircularProgressIndicator(
-                      color: FlutterFlowTheme.of(context).primaryColor,
+                    width: 100,
+                    height: 100,
+                    child: SpinKitRipple(
+                      color: Color(0xFF6FE8CB),
+                      size: 100,
                     ),
                   ),
                 )

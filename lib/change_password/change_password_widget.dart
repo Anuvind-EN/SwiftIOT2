@@ -5,6 +5,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChangePasswordWidget extends StatefulWidget {
@@ -43,10 +44,11 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
         if (!snapshot.hasData) {
           return Center(
             child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+              width: 100,
+              height: 100,
+              child: SpinKitRipple(
+                color: Color(0xFF6FE8CB),
+                size: 100,
               ),
             ),
           );
@@ -63,32 +65,39 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            automaticallyImplyLeading: false,
-            leading: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30,
-              buttonSize: 48,
-              icon: Icon(
-                Icons.chevron_left_rounded,
-                color: FlutterFlowTheme.of(context).secondaryText,
-                size: 30,
-              ),
-              onPressed: () async {
-                context.pop();
-              },
-            ),
-            title: Text(
-              FFLocalizations.of(context).getText(
-                'zrv5xzt7' /* Change Password */,
-              ),
-              style: FlutterFlowTheme.of(context).title2,
-            ),
-            actions: [],
-            centerTitle: false,
-            elevation: 0,
-          ),
+          appBar: responsiveVisibility(
+            context: context,
+            phone: false,
+            tablet: false,
+            tabletLandscape: false,
+            desktop: false,
+          )
+              ? AppBar(
+                  backgroundColor:
+                      FlutterFlowTheme.of(context).secondaryBackground,
+                  automaticallyImplyLeading: false,
+                  leading: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30,
+                    buttonSize: 48,
+                    icon: Icon(
+                      Icons.chevron_left_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 30,
+                    ),
+                    onPressed: () async {
+                      context.pop();
+                    },
+                  ),
+                  title: Text(
+                    'Change Password',
+                    style: FlutterFlowTheme.of(context).title2,
+                  ),
+                  actions: [],
+                  centerTitle: false,
+                  elevation: 0,
+                )
+              : null,
           body: SafeArea(
             child: Form(
               key: formKey,
@@ -125,9 +134,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                             padding:
                                 EdgeInsetsDirectional.fromSTEB(16, 12, 0, 0),
                             child: Text(
-                              FFLocalizations.of(context).getText(
-                                'diugbgju' /* Enter your email and we will s... */,
-                              ),
+                              'Enter your email and we will send a reset password link to your email for you to update it.',
                               style: FlutterFlowTheme.of(context).bodyText2,
                             ),
                           ),
@@ -138,14 +145,11 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                               controller: emailTextController,
                               obscureText: false,
                               decoration: InputDecoration(
-                                labelText: FFLocalizations.of(context).getText(
-                                  '1ugvo4lh' /* Email address here... */,
-                                ),
+                                labelText: 'Email address here...',
                                 labelStyle:
                                     FlutterFlowTheme.of(context).bodyText2,
-                                hintText: FFLocalizations.of(context).getText(
-                                  'wmrbsfa7' /* We will send a link to your em... */,
-                                ),
+                                hintText:
+                                    'We will send a link to your email...',
                                 hintStyle:
                                     FlutterFlowTheme.of(context).bodyText2,
                                 enabledBorder: OutlineInputBorder(
@@ -191,9 +195,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                               keyboardType: TextInputType.emailAddress,
                               validator: (val) {
                                 if (val == null || val.isEmpty) {
-                                  return FFLocalizations.of(context).getText(
-                                    '51rzt67i' /* Please fill in a new password.... */,
-                                  );
+                                  return 'Please fill in a new password..';
                                 }
 
                                 return null;
@@ -229,9 +231,7 @@ class _ChangePasswordWidgetState extends State<ChangePasswordWidget> {
                                       );
                                       context.pop();
                                     },
-                                    text: FFLocalizations.of(context).getText(
-                                      'vsdsmfuz' /* Send Link */,
-                                    ),
+                                    text: 'Send Link',
                                     options: FFButtonOptions(
                                       width: 230,
                                       height: 50,

@@ -7,6 +7,7 @@ import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyProfileWidget extends StatefulWidget {
@@ -72,10 +73,11 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
         if (!snapshot.hasData) {
           return Center(
             child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+              width: 100,
+              height: 100,
+              child: SpinKitRipple(
+                color: Color(0xFF6FE8CB),
+                size: 100,
               ),
             ),
           );
@@ -84,22 +86,28 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-            automaticallyImplyLeading: false,
-            title: Text(
-              FFLocalizations.of(context).getText(
-                's8wf66h8' /* Welcome */,
-              ),
-              style: FlutterFlowTheme.of(context).title1.override(
-                    fontFamily: 'Outfit',
-                    color: FlutterFlowTheme.of(context).white,
+          appBar: responsiveVisibility(
+            context: context,
+            phone: false,
+            tablet: false,
+            tabletLandscape: false,
+            desktop: false,
+          )
+              ? AppBar(
+                  backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+                  automaticallyImplyLeading: false,
+                  title: Text(
+                    'Welcome To Swift',
+                    style: FlutterFlowTheme.of(context).title1.override(
+                          fontFamily: 'Outfit',
+                          color: FlutterFlowTheme.of(context).white,
+                        ),
                   ),
-            ),
-            actions: [],
-            centerTitle: false,
-            elevation: 0,
-          ),
+                  actions: [],
+                  centerTitle: false,
+                  elevation: 0,
+                )
+              : null,
           body: SafeArea(
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -109,7 +117,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                     padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 100),
                     child: Column(
                       mainAxisSize: MainAxisSize.max,
-                      mainAxisAlignment: MainAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Row(
                           mainAxisSize: MainAxisSize.max,
@@ -165,9 +173,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 12, 0, 0),
                                 child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    '366ljlqt' /* Account Information */,
-                                  ),
+                                  'Account Information',
                                   style: FlutterFlowTheme.of(context).bodyText2,
                                 ),
                               ),
@@ -204,9 +210,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                               EdgeInsetsDirectional.fromSTEB(
                                                   16, 20, 0, 20),
                                           child: Text(
-                                            FFLocalizations.of(context).getText(
-                                              'ye8q2yrd' /* Edit Profile */,
-                                            ),
+                                            'Edit Profile',
                                             style: FlutterFlowTheme.of(context)
                                                 .bodyText1,
                                           ),
@@ -246,9 +250,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                         padding: EdgeInsetsDirectional.fromSTEB(
                                             16, 20, 0, 20),
                                         child: Text(
-                                          FFLocalizations.of(context).getText(
-                                            'hefan80l' /* Change Password */,
-                                          ),
+                                          'Change Password',
                                           style: FlutterFlowTheme.of(context)
                                               .bodyText1,
                                         ),
@@ -317,10 +319,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    '8qm7jduw' /* Switch to Dark Mode */,
-                                                  ),
+                                                  'Switch to Dark Mode',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1,
@@ -437,10 +436,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                  FFLocalizations.of(context)
-                                                      .getText(
-                                                    'ka9ardig' /* Switch to Light Mode */,
-                                                  ),
+                                                  'Switch to Light Mode',
                                                   style: FlutterFlowTheme.of(
                                                           context)
                                                       .bodyText1
@@ -554,9 +550,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                       context.goNamedAuth(
                                           'SplashScreen', mounted);
                                     },
-                                    text: FFLocalizations.of(context).getText(
-                                      '5qdxvuro' /* Log Out */,
-                                    ),
+                                    text: 'Log Out',
                                     options: FFButtonOptions(
                                       width: 130,
                                       height: 50,
@@ -579,9 +573,7 @@ class _MyProfileWidgetState extends State<MyProfileWidget>
                                   ),
                                 ),
                                 Text(
-                                  FFLocalizations.of(context).getText(
-                                    'wdraxapg' /* App Version v1.0 */,
-                                  ),
+                                  'App Version v1.0',
                                   textAlign: TextAlign.center,
                                   style: FlutterFlowTheme.of(context).bodyText2,
                                 ),

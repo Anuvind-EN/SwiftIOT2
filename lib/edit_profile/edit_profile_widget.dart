@@ -6,6 +6,7 @@ import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditProfileWidget extends StatefulWidget {
@@ -53,10 +54,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         if (!snapshot.hasData) {
           return Center(
             child: SizedBox(
-              width: 50,
-              height: 50,
-              child: CircularProgressIndicator(
-                color: FlutterFlowTheme.of(context).primaryColor,
+              width: 100,
+              height: 100,
+              child: SpinKitRipple(
+                color: Color(0xFF6FE8CB),
+                size: 100,
               ),
             ),
           );
@@ -72,32 +74,39 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
         return Scaffold(
           key: scaffoldKey,
           backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
-          appBar: AppBar(
-            backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
-            automaticallyImplyLeading: false,
-            leading: FlutterFlowIconButton(
-              borderColor: Colors.transparent,
-              borderRadius: 30,
-              buttonSize: 48,
-              icon: Icon(
-                Icons.chevron_left_rounded,
-                color: FlutterFlowTheme.of(context).secondaryText,
-                size: 30,
-              ),
-              onPressed: () async {
-                context.pop();
-              },
-            ),
-            title: Text(
-              FFLocalizations.of(context).getText(
-                '5rmb31yd' /* Edit Profile */,
-              ),
-              style: FlutterFlowTheme.of(context).title2,
-            ),
-            actions: [],
-            centerTitle: false,
-            elevation: 0,
-          ),
+          appBar: responsiveVisibility(
+            context: context,
+            phone: false,
+            tablet: false,
+            tabletLandscape: false,
+            desktop: false,
+          )
+              ? AppBar(
+                  backgroundColor:
+                      FlutterFlowTheme.of(context).secondaryBackground,
+                  automaticallyImplyLeading: false,
+                  leading: FlutterFlowIconButton(
+                    borderColor: Colors.transparent,
+                    borderRadius: 30,
+                    buttonSize: 48,
+                    icon: Icon(
+                      Icons.chevron_left_rounded,
+                      color: FlutterFlowTheme.of(context).secondaryText,
+                      size: 30,
+                    ),
+                    onPressed: () async {
+                      context.pop();
+                    },
+                  ),
+                  title: Text(
+                    'Edit Profile',
+                    style: FlutterFlowTheme.of(context).title2,
+                  ),
+                  actions: [],
+                  centerTitle: false,
+                  elevation: 0,
+                )
+              : null,
           body: SafeArea(
             child: Form(
               key: formKey,
@@ -132,11 +141,11 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                           if (!snapshot.hasData) {
                             return Center(
                               child: SizedBox(
-                                width: 50,
-                                height: 50,
-                                child: CircularProgressIndicator(
-                                  color:
-                                      FlutterFlowTheme.of(context).primaryColor,
+                                width: 100,
+                                height: 100,
+                                child: SpinKitRipple(
+                                  color: Color(0xFF6FE8CB),
+                                  size: 100,
                                 ),
                               ),
                             );
@@ -151,9 +160,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                 padding: EdgeInsetsDirectional.fromSTEB(
                                     16, 12, 0, 0),
                                 child: Text(
-                                  FFLocalizations.of(context).getText(
-                                    '8oax77b7' /* Update Account Information */,
-                                  ),
+                                  'Update Account Information',
                                   style: FlutterFlowTheme.of(context).bodyText2,
                                 ),
                               ),
@@ -167,16 +174,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText:
-                                        FFLocalizations.of(context).getText(
-                                      'azy9xn7u' /* Full Name */,
-                                    ),
+                                    labelText: 'Full Name',
                                     labelStyle:
                                         FlutterFlowTheme.of(context).subtitle2,
-                                    hintText:
-                                        FFLocalizations.of(context).getText(
-                                      'iqk6u7p2' /* Please enter your full name... */,
-                                    ),
+                                    hintText: 'Please enter your full name...',
                                     hintStyle:
                                         FlutterFlowTheme.of(context).subtitle2,
                                     enabledBorder: OutlineInputBorder(
@@ -231,16 +232,10 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                   ),
                                   obscureText: false,
                                   decoration: InputDecoration(
-                                    labelText:
-                                        FFLocalizations.of(context).getText(
-                                      'rf8zajjc' /* Email Address */,
-                                    ),
+                                    labelText: 'Email Address',
                                     labelStyle:
                                         FlutterFlowTheme.of(context).subtitle2,
-                                    hintText:
-                                        FFLocalizations.of(context).getText(
-                                      'xr47kaqu' /* Your email... */,
-                                    ),
+                                    hintText: 'Your email...',
                                     hintStyle:
                                         FlutterFlowTheme.of(context).subtitle2,
                                     enabledBorder: OutlineInputBorder(
@@ -308,10 +303,7 @@ class _EditProfileWidgetState extends State<EditProfileWidget> {
                                               .update(usersUpdateData);
                                           context.pop();
                                         },
-                                        text:
-                                            FFLocalizations.of(context).getText(
-                                          '675p3dda' /* Save Changes */,
-                                        ),
+                                        text: 'Save Changes',
                                         options: FFButtonOptions(
                                           width: 230,
                                           height: 50,
