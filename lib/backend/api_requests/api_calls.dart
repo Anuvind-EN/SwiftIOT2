@@ -9,14 +9,64 @@ export 'api_manager.dart' show ApiCallResponse;
 
 const _kPrivateApiFunctionName = 'ffPrivateApiCall';
 
-class FirebaseRealtimeCall {
+class BuzzerSendCall {
+  static Future<ApiCallResponse> call({
+    int? buzzer = 0,
+  }) {
+    final body = '''
+${buzzer}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Buzzer send',
+      apiUrl:
+          'https://swift-us-aa6f9-default-rtdb.firebaseio.com/FirebaseIOT/Buzzer.json',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Content-type': 'application/json',
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class PumpSendCall {
+  static Future<ApiCallResponse> call({
+    int? pump = 0,
+  }) {
+    final body = '''
+${pump}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'Pump Send',
+      apiUrl:
+          'https://swift-us-aa6f9-default-rtdb.firebaseio.com/FirebaseIOT/Pump.json',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Content-type': 'application/json',
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
+}
+
+class FirebaseRealtimeCopyCall {
   static Future<ApiCallResponse> call({
     List<String>? humidityList,
   }) {
     final humidity = _serializeList(humidityList);
 
     return ApiManager.instance.makeApiCall(
-      callName: 'Firebase realtime',
+      callName: 'Firebase realtime Copy',
       apiUrl:
           'https://swift-us-aa6f9-default-rtdb.firebaseio.com/FirebaseIOT.json',
       callType: ApiCallType.GET,
@@ -55,6 +105,39 @@ class FirebaseRealtimeCall {
         response,
         r'''$.Temp''',
       );
+  static dynamic am(dynamic response) => getJsonField(
+        response,
+        r'''$.AMoist''',
+      );
+  static dynamic st(dynamic response) => getJsonField(
+        response,
+        r'''$.status''',
+      );
+}
+
+class ThreshSendCall {
+  static Future<ApiCallResponse> call({
+    int? thresh = 0,
+  }) {
+    final body = '''
+${thresh}''';
+    return ApiManager.instance.makeApiCall(
+      callName: 'thresh send',
+      apiUrl:
+          'https://swift-us-aa6f9-default-rtdb.firebaseio.com/FirebaseIOT/thresh.json',
+      callType: ApiCallType.PUT,
+      headers: {
+        'Content-type': 'application/json',
+      },
+      params: {},
+      body: body,
+      bodyType: BodyType.JSON,
+      returnBody: true,
+      encodeBodyUtf8: false,
+      decodeUtf8: false,
+      cache: false,
+    );
+  }
 }
 
 class ApiPagingParams {

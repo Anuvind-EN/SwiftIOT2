@@ -43,6 +43,13 @@ abstract class FlutterFlowTheme {
   late Color lineColor;
   late Color darkBG;
   late Color primaryBlack;
+  late Color primaryBtnText;
+  late Color grayIcon;
+  late Color gray200;
+  late Color gray600;
+  late Color black600;
+  late Color tertiary400;
+  late Color textColor;
 
   String get title1Family => typography.title1Family;
   TextStyle get title1 => typography.title1;
@@ -67,15 +74,22 @@ class LightModeTheme extends FlutterFlowTheme {
   late Color secondaryColor = const Color(0xFF359F8A);
   late Color tertiaryColor = const Color(0xFFE86969);
   late Color alternate = const Color(0xFF262D34);
-  late Color primaryBackground = const Color(0xFFF1F4F8);
-  late Color secondaryBackground = const Color(0xFFFFFFFF);
-  late Color primaryText = const Color(0xFF1A1F24);
-  late Color secondaryText = const Color(0xFF95A1AC);
+  late Color primaryBackground = const Color(0xFF1A1F24);
+  late Color secondaryBackground = const Color(0xFF131619);
+  late Color primaryText = const Color(0xFFFFFFFF);
+  late Color secondaryText = const Color(0xFFFFFFFF);
 
   late Color white = Color(0xFFFFFFFF);
-  late Color lineColor = Color(0xFFDBE2E7);
+  late Color lineColor = Color(0xFF262D34);
   late Color darkBG = Color(0xFF1A1F24);
   late Color primaryBlack = Color(0xFF131619);
+  late Color primaryBtnText = Color(0xFFFFFFFF);
+  late Color grayIcon = Color(0xFF95A1AC);
+  late Color gray200 = Color(0xFFDBE2E7);
+  late Color gray600 = Color(0xFF262D34);
+  late Color black600 = Color(0xFF090F13);
+  late Color tertiary400 = Color(0xFF39D2C0);
+  late Color textColor = Color(0xFF1E2429);
 }
 
 abstract class Typography {
@@ -165,6 +179,13 @@ class DarkModeTheme extends FlutterFlowTheme {
   late Color lineColor = Color(0xFF262D34);
   late Color darkBG = Color(0xFF1A1F24);
   late Color primaryBlack = Color(0xFF131619);
+  late Color primaryBtnText = Color(0xFFFFFFFF);
+  late Color grayIcon = Color(0xFF95A1AC);
+  late Color gray200 = Color(0xFFDBE2E7);
+  late Color gray600 = Color(0xFF262D34);
+  late Color black600 = Color(0xFF090F13);
+  late Color tertiary400 = Color(0xFF39D2C0);
+  late Color textColor = Color(0xFF1E2429);
 }
 
 extension TextStyleHelper on TextStyle {

@@ -10,8 +10,8 @@ import 'flutter_flow/flutter_flow_theme.dart';
 import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'flutter_flow/nav/nav.dart';
 import 'index.dart';
 
@@ -122,102 +122,53 @@ class _NavBarPageState extends State<NavBarPage> {
   @override
   Widget build(BuildContext context) {
     final tabs = {
-      'SplashScreen': SplashScreenWidget(),
       'MyProfile': MyProfileWidget(),
-      'home_PageTemplate': HomePageTemplateWidget(),
+      'dbsh': DbshWidget(),
+      'AutoIrrigation': AutoIrrigationWidget(),
     };
     final currentIndex = tabs.keys.toList().indexOf(_currentPageName);
     return Scaffold(
       body: _currentPage ?? tabs[_currentPageName],
-      extendBody: true,
-      bottomNavigationBar: FloatingNavbar(
+      bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
         onTap: (i) => setState(() {
           _currentPage = null;
           _currentPageName = tabs.keys.toList()[i];
         }),
         backgroundColor: FlutterFlowTheme.of(context).primaryBlack,
-        selectedItemColor: FlutterFlowTheme.of(context).white,
-        unselectedItemColor: FlutterFlowTheme.of(context).secondaryText,
-        selectedBackgroundColor: Color(0xFF212E2A),
-        borderRadius: 40,
-        itemBorderRadius: 40,
-        margin: EdgeInsetsDirectional.fromSTEB(12, 0, 12, 12),
-        padding: EdgeInsetsDirectional.fromSTEB(0, 8, 0, 8),
-        width: double.infinity,
-        elevation: 4,
-        items: [
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  currentIndex == 0 ? Icons.home : Icons.home_outlined,
-                  color: currentIndex == 0
-                      ? FlutterFlowTheme.of(context).white
-                      : FlutterFlowTheme.of(context).secondaryText,
-                  size: 24,
-                ),
-                Text(
-                  'Home',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 0
-                        ? FlutterFlowTheme.of(context).white
-                        : FlutterFlowTheme.of(context).secondaryText,
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+        selectedItemColor: Color(0xFF9CE7D6),
+        unselectedItemColor: FlutterFlowTheme.of(context).white,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        type: BottomNavigationBarType.fixed,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person_outline,
+              size: 32,
             ),
+            activeIcon: Icon(
+              Icons.person_sharp,
+              size: 32,
+            ),
+            label: 'Profile',
+            tooltip: '',
           ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  currentIndex == 1 ? Icons.person_sharp : Icons.person_outline,
-                  color: currentIndex == 1
-                      ? FlutterFlowTheme.of(context).white
-                      : FlutterFlowTheme.of(context).secondaryText,
-                  size: 24,
-                ),
-                Text(
-                  'Profile',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 1
-                        ? FlutterFlowTheme.of(context).white
-                        : FlutterFlowTheme.of(context).secondaryText,
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.database,
+              size: 32,
             ),
+            label: 'Dashboard',
+            tooltip: '',
           ),
-          FloatingNavbarItem(
-            customWidget: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Icon(
-                  Icons.bar_chart_rounded,
-                  color: currentIndex == 2
-                      ? FlutterFlowTheme.of(context).white
-                      : FlutterFlowTheme.of(context).secondaryText,
-                  size: 24,
-                ),
-                Text(
-                  'dashboard',
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    color: currentIndex == 2
-                        ? FlutterFlowTheme.of(context).white
-                        : FlutterFlowTheme.of(context).secondaryText,
-                    fontSize: 11.0,
-                  ),
-                ),
-              ],
+          BottomNavigationBarItem(
+            icon: FaIcon(
+              FontAwesomeIcons.water,
+              size: 32,
             ),
+            label: 'Irrigation',
+            tooltip: '',
           )
         ],
       ),

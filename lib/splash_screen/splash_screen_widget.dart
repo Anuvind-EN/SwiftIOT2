@@ -168,16 +168,43 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  GradientText(
-                    'SWIFT',
-                    style: FlutterFlowTheme.of(context).bodyText1.override(
-                          fontFamily: 'Outfit',
-                          fontSize: 81,
+                  if (responsiveVisibility(
+                    context: context,
+                    desktop: false,
+                  ))
+                    Container(
+                      width: MediaQuery.of(context).size.width,
+                      height: MediaQuery.of(context).size.height * 0.1,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                        child: Image.asset(
+                          'assets/images/swift-high-resolution-logo-color-on-transparent-background.png',
+                          fit: BoxFit.cover,
                         ),
-                    colors: [Colors.white, Color(0xFF05FFD4)],
-                    gradientDirection: GradientDirection.ltr,
-                    gradientType: GradientType.linear,
-                  ),
+                      ),
+                    ),
+                  if (responsiveVisibility(
+                    context: context,
+                    phone: false,
+                    tablet: false,
+                    tabletLandscape: false,
+                  ))
+                    Container(
+                      height: MediaQuery.of(context).size.height * 0.13,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                      ),
+                      child: Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(20, 0, 0, 0),
+                        child: Image.asset(
+                          'assets/images/swift-high-resolution-logo-color-on-transparent-background.png',
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ),
                 ],
               ),
               Row(
@@ -221,7 +248,7 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                         alignment: AlignmentDirectional(0, 0),
                         child: Padding(
                           padding:
-                              EdgeInsetsDirectional.fromSTEB(15, 20, 15, 0),
+                              EdgeInsetsDirectional.fromSTEB(15, 10, 19, 0),
                           child: GradientText(
                             '\"Introducing the Smart Farming System - a revolutionary way to grow and cultivate crops using advanced sensor technology and solar-powered slave modules. Our system accurately monitors temperature, humidity, and soil moisture levels, and uses this information to optimize irrigation and pest control. The system includes a user-friendly mobile app that allows you to control the water pump and buzzer remotely. Whether you\'re a seasoned farmer or just starting out, the Smart Farming System is the perfect solution for efficient, sustainable, and enjoyable farming.\"',
                             textAlign: TextAlign.center,
@@ -240,38 +267,66 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                 ],
               ),
               Expanded(
-                child: Row(
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (responsiveVisibility(
-                      context: context,
-                      desktop: false,
-                    ))
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
-                                child: FFButtonWidget(
+                child: Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.max,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (responsiveVisibility(
+                        context: context,
+                        desktop: false,
+                      ))
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 55, 0, 0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 2, 0, 20),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      context.pushNamed('Register');
+                                    },
+                                    text: 'Register',
+                                    options: FFButtonOptions(
+                                      width: 200,
+                                      height: 50,
+                                      color: Color(0xFF1C7363),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            color: Colors.white,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                      elevation: 3,
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'buttonOnPageLoadAnimation1']!),
+                                ),
+                                FFButtonWidget(
                                   onPressed: () async {
-                                    context.pushNamed('Register');
+                                    context.pushNamed('Login');
                                   },
-                                  text: 'Register',
+                                  text: 'Login',
                                   options: FFButtonOptions(
                                     width: 200,
                                     height: 50,
-                                    color: Color(0xFF1C7363),
+                                    color: FlutterFlowTheme.of(context).white,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .subtitle2
                                         .override(
                                           fontFamily: 'Outfit',
-                                          color: Colors.white,
+                                          color: Color(0xFF1C7363),
                                           fontWeight: FontWeight.bold,
                                         ),
                                     elevation: 3,
@@ -282,69 +337,70 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ).animateOnPageLoad(animationsMap[
-                                    'buttonOnPageLoadAnimation1']!),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  context.pushNamed('Login');
-                                },
-                                text: 'Login',
-                                options: FFButtonOptions(
-                                  width: 200,
-                                  height: 50,
-                                  color: FlutterFlowTheme.of(context).white,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: Color(0xFF1C7363),
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                  elevation: 3,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ).animateOnPageLoad(
-                                  animationsMap['buttonOnPageLoadAnimation2']!),
-                            ],
+                                    'buttonOnPageLoadAnimation2']!),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                    if (responsiveVisibility(
-                      context: context,
-                      phone: false,
-                      tablet: false,
-                      tabletLandscape: false,
-                    ))
-                      Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                        child: SingleChildScrollView(
-                          child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Padding(
-                                padding:
-                                    EdgeInsetsDirectional.fromSTEB(0, 2, 0, 20),
-                                child: FFButtonWidget(
+                      if (responsiveVisibility(
+                        context: context,
+                        phone: false,
+                        tablet: false,
+                        tabletLandscape: false,
+                      ))
+                        Padding(
+                          padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                          child: SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0, 2, 0, 20),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      context.pushNamed('Register');
+                                    },
+                                    text: 'Register',
+                                    options: FFButtonOptions(
+                                      width: 250,
+                                      height: 70,
+                                      color: Color(0xFF1C7363),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .subtitle2
+                                          .override(
+                                            fontFamily: 'Outfit',
+                                            color: Colors.white,
+                                            fontSize: 30,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                      borderSide: BorderSide(
+                                        color: Colors.transparent,
+                                        width: 1,
+                                      ),
+                                      borderRadius: BorderRadius.circular(8),
+                                    ),
+                                  ).animateOnPageLoad(animationsMap[
+                                      'buttonOnPageLoadAnimation3']!),
+                                ),
+                                FFButtonWidget(
                                   onPressed: () async {
-                                    context.pushNamed('Register');
+                                    context.pushNamed('Login');
                                   },
-                                  text: 'Register',
+                                  text: 'Login',
                                   options: FFButtonOptions(
                                     width: 250,
                                     height: 70,
-                                    color: Color(0xFF1C7363),
+                                    color: FlutterFlowTheme.of(context).white,
                                     textStyle: FlutterFlowTheme.of(context)
                                         .subtitle2
                                         .override(
                                           fontFamily: 'Outfit',
-                                          color: Colors.white,
+                                          color: Color(0xFF1C7363),
                                           fontSize: 30,
                                           fontWeight: FontWeight.bold,
                                         ),
+                                    elevation: 3,
                                     borderSide: BorderSide(
                                       color: Colors.transparent,
                                       width: 1,
@@ -352,39 +408,13 @@ class _SplashScreenWidgetState extends State<SplashScreenWidget>
                                     borderRadius: BorderRadius.circular(8),
                                   ),
                                 ).animateOnPageLoad(animationsMap[
-                                    'buttonOnPageLoadAnimation3']!),
-                              ),
-                              FFButtonWidget(
-                                onPressed: () async {
-                                  context.pushNamed('Login');
-                                },
-                                text: 'Login',
-                                options: FFButtonOptions(
-                                  width: 250,
-                                  height: 70,
-                                  color: FlutterFlowTheme.of(context).white,
-                                  textStyle: FlutterFlowTheme.of(context)
-                                      .subtitle2
-                                      .override(
-                                        fontFamily: 'Outfit',
-                                        color: Color(0xFF1C7363),
-                                        fontSize: 30,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                  elevation: 3,
-                                  borderSide: BorderSide(
-                                    color: Colors.transparent,
-                                    width: 1,
-                                  ),
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                              ).animateOnPageLoad(
-                                  animationsMap['buttonOnPageLoadAnimation4']!),
-                            ],
+                                    'buttonOnPageLoadAnimation4']!),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

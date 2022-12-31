@@ -81,9 +81,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'SplashScreen',
               path: 'splashScreen',
-              builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'SplashScreen')
-                  : SplashScreenWidget(),
+              builder: (context, params) => SplashScreenWidget(),
             ),
             FFRoute(
               name: 'Login',
@@ -110,6 +108,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
             FFRoute(
               name: 'MyProfile',
               path: 'myProfile',
+              requireAuth: true,
               builder: (context, params) => params.isEmpty
                   ? NavBarPage(initialPage: 'MyProfile')
                   : MyProfileWidget(),
@@ -120,16 +119,23 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context, params) => ChangePasswordWidget(),
             ),
             FFRoute(
-              name: 'home_PageTemplate',
-              path: 'homePageTemplate',
+              name: 'dbsh',
+              path: 'dashboard',
               builder: (context, params) => params.isEmpty
-                  ? NavBarPage(initialPage: 'home_PageTemplate')
-                  : HomePageTemplateWidget(),
+                  ? NavBarPage(initialPage: 'dbsh')
+                  : DbshWidget(),
             ),
             FFRoute(
-              name: 'dash',
-              path: 'dash',
-              builder: (context, params) => DashWidget(),
+              name: 'Achievments',
+              path: 'achievments',
+              builder: (context, params) => AchievmentsWidget(),
+            ),
+            FFRoute(
+              name: 'AutoIrrigation',
+              path: 'autoIrrigation',
+              builder: (context, params) => params.isEmpty
+                  ? NavBarPage(initialPage: 'AutoIrrigation')
+                  : AutoIrrigationWidget(),
             )
           ].map((r) => r.toRoute(appStateNotifier)).toList(),
         ).toRoute(appStateNotifier),
@@ -302,14 +308,11 @@ class FFRoute {
                 )
               : builder(context, ffParams);
           final child = appStateNotifier.loading
-              ? Center(
-                  child: SizedBox(
-                    width: 100,
-                    height: 100,
-                    child: SpinKitRipple(
-                      color: Color(0xFF6FE8CB),
-                      size: 100,
-                    ),
+              ? Container(
+                  color: Colors.transparent,
+                  child: Image.asset(
+                    'assets/images/swift-high-resolution-logo-color-on-transparent-background.png',
+                    fit: BoxFit.contain,
                   ),
                 )
               : page;

@@ -6,7 +6,6 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:simple_gradient_text/simple_gradient_text.dart';
 
 class LoginWidget extends StatefulWidget {
   const LoginWidget({Key? key}) : super(key: key);
@@ -50,7 +49,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+      backgroundColor: Color(0xFF076250),
       body: Form(
         key: formKey,
         autovalidateMode: AutovalidateMode.always,
@@ -58,27 +57,51 @@ class _LoginWidgetState extends State<LoginWidget> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             children: [
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    GradientText(
-                      'SWIFT',
-                      style: FlutterFlowTheme.of(context).bodyText1.override(
-                            fontFamily: 'Outfit',
-                            fontSize: 72,
-                            fontWeight: FontWeight.w600,
-                          ),
-                      colors: [Color(0xFF212E2A), Color(0xFF1C7363)],
-                      gradientDirection: GradientDirection.btt,
-                      gradientType: GradientType.linear,
+              if (responsiveVisibility(
+                context: context,
+                desktop: false,
+              ))
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                  child: Container(
+                    height: MediaQuery.of(context).size.height * 0.1,
+                    decoration: BoxDecoration(
+                      color: Colors.transparent,
                     ),
-                  ],
+                    child: Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                      child: Image.asset(
+                        'assets/images/swift-high-resolution-logo-color-on-transparent-background.png',
+                        height: 100,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              if (responsiveVisibility(
+                context: context,
+                phone: false,
+                tablet: false,
+                tabletLandscape: false,
+              ))
+                Container(
+                  height: MediaQuery.of(context).size.height * 0.13,
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                  ),
+                  child: Stack(
+                    children: [
+                      Padding(
+                        padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
+                        child: Image.asset(
+                          'assets/images/swift-high-resolution-logo-color-on-transparent-background.png',
+                          height: 100,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               if (responsiveVisibility(
                 context: context,
                 desktop: false,
@@ -373,7 +396,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                   children: [
                     Expanded(
                       child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                        padding: EdgeInsetsDirectional.fromSTEB(24, 40, 24, 0),
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
@@ -580,7 +603,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           .override(
                                             fontFamily: 'Outfit',
                                             color: FlutterFlowTheme.of(context)
-                                                .darkBG,
+                                                .primaryBtnText,
                                             fontSize: 20,
                                           ),
                                     ),
@@ -604,8 +627,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     options: FFButtonOptions(
                                       width: 100,
                                       height: 32,
-                                      color: FlutterFlowTheme.of(context)
-                                          .primaryColor,
+                                      color: Color(0xFF076250),
                                       textStyle: FlutterFlowTheme.of(context)
                                           .subtitle2
                                           .override(
